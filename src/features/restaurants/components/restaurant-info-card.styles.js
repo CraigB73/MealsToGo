@@ -33,7 +33,7 @@ export const Icon = styled.Image`
  `;
  export const RestaurantCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.secondary};
-  padding: ${(props => props.theme.space[2])};
+  padding: ${(props => props.theme.space[0])};
 `;
 export const RestaurantCardCover = styled(Card.Cover)`
   padding: ${(props) => props.theme.space[1]};  

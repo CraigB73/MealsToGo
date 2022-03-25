@@ -1,9 +1,9 @@
 import React, {useContext} from 'react';
 
-import { View, FlatList} from 'react-native';
+import { View, FlatList, Pressable} from 'react-native';
 import styled from 'styled-components';
 import { ActivityIndicator, Colors } from 'react-native-paper';
-import { SeachBar } from '../../../components/SeachBar';
+
 import { RestaurantInfoCard } from '../components/restaurant-info-card.component';
 import { Search } from '../components/search.component';
 import { RestaurantContext } from '../../../services/restaurants.context';
@@ -14,15 +14,12 @@ import { SafeArea } from '../../../components/utility/safe-area.component';
 // fix the background-color to dynamically add bottom padding on last card
 
 
-const ViewWrapper = styled(View)` 
- 
-  padding: ${(props) => props.theme.space[2]};
-  background-color: ${(props) => props.theme.colors.bg.secondary}
-  
-`;
-const SearcBarContainer = styled(View)`
-  padding-bottom: ${(props) => props.theme.space[2]}
-  `;
+
+const RestaurantList = styled(FlatList).attrs({
+  contentContainerStyle: {
+    padding: 16,
+  },
+})``;
 
 const LoadingContainer = styled(View)`
   position: absolute;
@@ -32,9 +29,10 @@ const LoadingContainer = styled(View)`
 const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
 `;
-export const RestaurantScreens = () => {
+export const RestaurantScreen = ({ navigation }) => {
 
-  const {isLoading, error, restaurants} = useContext(RestaurantContext);
+  const { isLoading, restaurants } = useContext(RestaurantContext);
+
   return (
     <>
       <SafeArea>
@@ -47,26 +45,26 @@ export const RestaurantScreens = () => {
             />
           </LoadingContainer>
         )}
-        <ViewWrapper>
+      
          <Search/>
-          <FlatList
+          <RestaurantList
             data={restaurants}
-  i          renderItem={({ item }) => {
+            renderItem={({ item }) => {
               return (
-                <Spacer position='bottom' size='2'>
-                  <RestaurantInfoCard restaurant={item} />
-                </Spacer>) 
-            }
+                <Pressable onPress={() => navigation.navigate("RestaurantDetail")}>
+                  <Spacer position='bottom' size='2'>
+                    <RestaurantInfoCard restaurant={item} />
+                  </Spacer>
+                </Pressable>
+              )}
             }
             keyExtractor={(item) => item.name}
-            
-          />
-        </ViewWrapper>
+        />
+        
       </SafeArea>
-      
 
     </>
-    
+
   );
 }
 // const styles = StyleSheet.create({
