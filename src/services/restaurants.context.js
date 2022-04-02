@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useContext, createContext } from 'react';
-import { RestaurantCard } from '../features/restaurants/components/restaurant-info-card.styles';
+
 import { restaurantsRequest, restaurantsTransform } from './restaurants.services';
 
 import { LocationContext } from "../services/location/location.context";

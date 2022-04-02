@@ -3,10 +3,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { Text } from 'react-native';
+import { MapScreen } from '../../features/map/map.screen';
 
 
 import { SafeArea } from '../../components/utility/safe-area.component';
 import { RestaurantsNavigator } from './restaurants.navigator';
+
 
 const Tab = createBottomTabNavigator();
   
@@ -20,10 +22,7 @@ const Tab = createBottomTabNavigator();
     <SafeArea>
       <Text>Restaurants</Text>
     </SafeArea>);
-  const Map = () => (
-    <SafeArea>
-      <Text>Map</Text>
-    </SafeArea>);
+ 
 const Settings = () => (
     <SafeArea>
       <Text>Settings</Text>
@@ -33,6 +32,7 @@ const Settings = () => (
 
   const createScreenOptions = ({ route }) => {
     const iconName = TAB_ICON[route.name];
+  
     return {
       tabBarIcon: ({ size, color }) => (
         <Ionicons name={iconName} size={size} color={color} />
@@ -42,18 +42,20 @@ const Settings = () => (
 export const AppNavigator = () => {
   return (
     <NavigationContainer>
-    <Tab.Navigator
-      screenOptions={arg => ({ 
-        ...createScreenOptions(arg),
-        tabBarActiveTintColor: 'seagreen',
-        tabBarInactiveTintColor: 'brown',
-      })}
-    >
-        <Tab.Screen name="Restaurant" component={RestaurantsNavigator} />
-      <Tab.Screen name="Map" component={Map} />
-      <Tab.Screen name="Settings" component={Settings} />
-    </Tab.Navigator>
-  </NavigationContainer>
+      <Tab.Navigator
+        screenOptions={arg => {
+            return ({
+              ...createScreenOptions(arg),
+              tabBarActiveTintColor: 'seagreen',
+              tabBarInactiveTintColor: 'brown',
+            });
+          }}
+       >
+        <Tab.Screen  name="Restaurant" component={RestaurantsNavigator} />
+        <Tab.Screen name="Map" component={MapScreen} />
+        <Tab.Screen name="Settings" component={Settings} />
+     </Tab.Navigator>
+   </NavigationContainer>
   )
 }
 

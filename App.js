@@ -1,4 +1,5 @@
 import React from 'react';
+import 'react-native-gesture-handler';
 import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 
 
@@ -29,9 +30,9 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <LocationContextProvider>
-        <RestaurantContextProvider>
+    <ThemeProvider theme={theme} >
+      <LocationContextProvider >
+        <RestaurantContextProvider >
           <Navigation />
         </RestaurantContextProvider>
       </LocationContextProvider>
