@@ -1,11 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
-
+import { Text, View } from 'react-native';
 import MapView from 'react-native-maps';
 import styled from 'styled-components';
 
 import { Search } from './components/search.component';
 import { RestaurantContext } from '../../services/restaurants.context';
 import { LocationContext } from '../../services/location/location.context';
+import { MapCallout } from './components/map-callout.component';
 
 const Map = styled(MapView)` 
 
@@ -30,9 +31,7 @@ export const MapScreen = () => {
     setLatDelta(northeastLat - southwestLat);
   }, [location, viewport]);
 
-  return (
-  
-    <>
+  return (<>
     <Search />
     <Map
       region={{
@@ -43,12 +42,23 @@ export const MapScreen = () => {
       }}
     >
       {restaurants.map((restaurant) => {
-        return null ;
+        return (
+          <MapView.Marker
+            key={restaurant.name}
+            title={restaurant.name}
+            coordinate={{
+              latitude: restaurant.geometry.location.lat,
+              longitude: restaurant.geometry.location.lng,
+            }}
+          />
+        );
       })}
     </Map>
   </>
-  ) 
+  );
 }
+
+   
   
 
     

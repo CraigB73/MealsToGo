@@ -1,7 +1,4 @@
 import React from 'react';
-import { View,  Image} from 'react-native';
-import { Card } from 'react-native-paper';
-import styled, { StyledComponent } from 'styled-components';
 import { SvgXml } from 'react-native-svg';
 import { Text } from '../../../components/typography/text.component';
 import { Spacer } from '../../../components/spacer/spacer.component';
