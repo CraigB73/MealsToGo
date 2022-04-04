@@ -1,6 +1,6 @@
 
 import { SafeAreaView, StatusBar } from 'react-native';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 
 

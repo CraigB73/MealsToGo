@@ -16,6 +16,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
+
 // fix the background-color to dynamically add bottom padding on last card
 
 
@@ -62,18 +63,17 @@ export const RestaurantScreen = ({ navigation }) => {
                     navigation.navigate("RestaurantDetail", {
                       restaurant: item,
                     })
-                  }>
+                  }
+                >
                   <Spacer position='bottom' size='2'>
                     <RestaurantInfoCard restaurant={item} />
                   </Spacer>
                 </TouchableOpacity>
-              )}
-            }
+              );
+            }}
             keyExtractor={(item) => item.name}
-        />
-        
+          />
       </SafeArea>
-
     </>
 
   );
