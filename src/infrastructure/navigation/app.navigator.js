@@ -17,12 +17,8 @@ const Tab = createBottomTabNavigator();
     Map: 'md-map',
     Settings: 'md-settings',
   };
-  
-  const Restaurant = () => (
-    <SafeArea>
-      <Text>Restaurants</Text>
-    </SafeArea>);
  
+    
 const Settings = () => (
     <SafeArea>
       <Text>Settings</Text>

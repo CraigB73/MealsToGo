@@ -8,9 +8,10 @@ import { SafeArea } from '../../../components/utility/safe-area.component';
 
 import { RestaurantContext } from '../../../services/restaurants.context';
 
+
 import { Search } from '../components/search.component';
 import { RestaurantInfoCard } from '../components/restaurant-info-card.component';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native';
 
 
 
@@ -23,7 +24,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
-    padding: 3,
+    padding: 16,
   },
 })``;
 
@@ -36,12 +37,11 @@ const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
 `;
 export const RestaurantScreen = ({ navigation }) => {
-
-
   const { isLoading, restaurants } = useContext(RestaurantContext);
 
+
   return (
-    <>
+   
       <SafeArea >
         {isLoading && (
         <LoadingContainer>
@@ -53,15 +53,15 @@ export const RestaurantScreen = ({ navigation }) => {
           </LoadingContainer>
         )}
       
-         <Search/>
+      <Search/>
           <RestaurantList
             data={restaurants}
             renderItem={({ item }) => {
               return (
                 <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("RestaurantDetail", {
-                      restaurant: item,
+                onPress={() =>
+                navigation.navigate("RestaurantDetail", {
+                  restaurant: item,
                     })
                   }
                 >
@@ -74,7 +74,7 @@ export const RestaurantScreen = ({ navigation }) => {
             keyExtractor={(item) => item.name}
           />
       </SafeArea>
-    </>
+   
 
   );
 }

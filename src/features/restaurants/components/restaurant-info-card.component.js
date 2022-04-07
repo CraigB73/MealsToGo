@@ -11,10 +11,11 @@ import {
   RestaurantCard,
   RestaurantCardCover
 } from './restaurant-info-card.styles';
-
+import { Favourites } from '../../../components/favourites/favourites.component'
 // ********** SVG icon ****************
-import star from '../../../../assets/star'
-import open from '../../../../assets/open'
+import star from '../../../../assets/star';
+import open from '../../../../assets/open';
+
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
@@ -42,12 +43,15 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     }
   } 
   return (
-    <RestaurantCard elevation= {5}>
-      <RestaurantCardCover
+    <RestaurantCard elevation={5}>
+        <Favourites restaurant={restaurant} />
+        <RestaurantCardCover
         key={name}
         style={ RestaurantCardCover }
         source={{ uri: photos[0] }} 
-      />
+        />
+    
+      
       <Info>
         <Text variant='label'>{name}</Text>
         <Section >
