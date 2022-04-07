@@ -2,11 +2,11 @@ import React, { useContext, useState, useEffect } from 'react';
 import MapView from 'react-native-maps';
 import styled from 'styled-components';
 
-import { LocationContext } from '../../services/location/location.context';
-import { RestaurantContext } from '../../services/restaurants.context';
+import { LocationContext } from '../../../services/location/location.context';
+import { RestaurantContext } from '../../../services/restaurants.context';
 
-import { Search } from './components/search.component';
-import { MapCallout } from './components/map-callout.component';
+import { Search } from '../components/search.component';
+import { MapCallout } from '../components/map-callout.component';
 import { NavigationContainer } from '@react-navigation/native';
 
 const Map = styled(MapView)` 

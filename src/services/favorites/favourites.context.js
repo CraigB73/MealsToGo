@@ -1,12 +1,34 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
 import { RestaurantCard } from '../../features/restaurants/components/restaurant-info-card.styles';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export const FavouritesContext = createContext();
 
 export const FavouritesContextPovider = ({ children }) => {
   const [favourites, setFavourites] = useState([])
+
+  const saveFavourites = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('@favourites_key', jsonValue)
+    } catch (e) {
+      console.log( 'Saving error', e )
+    }
+  }
+  
+  
+const loadFavourites = async () => {
+  try {
+    const value = await AsyncStorage.getItem('@favourites_key')
+    if(value !== null) {
+      setFavourites(JSON.parse(value));
+    }
+  } catch(e) {
+    console.log( 'loading error', e )
+  }
+}
+
 
   const add = (restaurant) => {
     setFavourites([...favourites, restaurant])
@@ -16,6 +38,14 @@ export const FavouritesContextPovider = ({ children }) => {
     const newFavourites = favourites.filter((x) => x.placeId !== restaurant.placeId);
     setFavourites(newFavourites);
   };
+
+   useEffect(() => {
+    loadFavourites();
+  }, []);
+
+  useEffect(() => {
+    saveFavourites(favourites);
+  }, [favourites]);
   
   return (
     <FavouritesContext.Provider

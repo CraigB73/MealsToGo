@@ -8,15 +8,14 @@ import { FavouritesContext } from '../../services/favorites/favourites.context';
 
 const FavouriteButton = styled(TouchableOpacity)`
   position: absolute;
-  top: 25px;
-  right: 25px;
+  top: 20px;
+  right: 20px;
   z-index: 99; 
 `;
 
 
 export const Favourites = ({ restaurant }) => {
   const { favourites, addToFavourites, removeFromFavourites, } = useContext(FavouritesContext);
-  console.log(favourites.length)
   const isFavourite = favourites.find((r) => r.placeId === restaurant.placeId);
  
   
