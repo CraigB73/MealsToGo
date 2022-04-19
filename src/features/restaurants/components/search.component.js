@@ -6,7 +6,7 @@ import { View } from "react-native";
 import { LocationContext } from "../../../services/location/location.context";
 
 const SearchContainer = styled(View)`
-
+ 
     padding: ${(props) => props.theme.space[2]}
 `;
 

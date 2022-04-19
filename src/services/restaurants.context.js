@@ -1,53 +1,40 @@
-import React, { useState, useEffect, useMemo, useContext, createContext } from 'react';
 
-import { restaurantsRequest, restaurantsTransform } from './restaurants.services';
+   
+import React, { useState, createContext } from "react";
+import * as firebase from "firebase";
 
-import { LocationContext } from "../services/location/location.context";
+import { loginRequest } from "./authentication.service";
 
-export const RestaurantContext = createContext() 
+export const AuthenticationContext = createContext();
 
-export const RestaurantContextProvider = ({ children }) => {
-  const [restaurants, setRestaurants] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
+export const AuthenticationContextProvider = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
 
-  const { location } = useContext(LocationContext);
-  
-  const retrieveRestaurant = (restaurantlocation) => {
+  const onLogin = (email, password) => {
     setIsLoading(true);
-    setIsLoading([]);
-    
-    setTimeout(() => {
-      restaurantsRequest(restaurantlocation)
-        .then(restaurantsTransform)
-        .then((results) => {
-          setIsLoading(false);
-          setRestaurants(results);
+    loginRequest(email, password)
+      .then((u) => {
+        setUser(u);
+        setIsLoading(false);
       })
-        .catch((err) => {
-          setIsLoading(false),
-          setError(err) 
-      })
-    }, 2000)
+      .catch((e) => {
+        setIsLoading(false);
+        setError(e);
+      });
   };
 
-    useEffect(() => {
-    if (location) { 
-      const locationString = `${location.lat},${location.lng}`;
-      retrieveRestaurant(locationString);
-      
-    }
-  }, [location]);
-
   return (
-    <RestaurantContext.Provider
+    <AuthenticationContext.Provider
       value={{
-        restaurants,
+        user,
         isLoading,
         error,
+        onLogin,
       }}
     >
       {children}
-    </RestaurantContext.Provider>
-  )
-}
+    </AuthenticationContext.Provider>
+  );
+};
