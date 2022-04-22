@@ -6,7 +6,7 @@ import { ActivityIndicator, Colors } from 'react-native-paper';
 import { Spacer } from '../../../components/spacer/spacer.component';
 import { SafeArea } from '../../../components/utility/safe-area.component';
 
-import { RestaurantContext } from '../../../services/restaurants.context';
+import { RestaurantContext } from '../../../services/restaurants/restaurants.context';
 import { FavouritesContext } from '../../../services/favorites/favourites.context';
 
 
@@ -38,7 +38,7 @@ const LoadingContainer = styled(View)`
 const Loading = styled(ActivityIndicator)`
   margin-left: -25px;
 `;
-export const RestaurantScreen = ({ navigation,  }) => {
+export const RestaurantScreen = ({ navigation  }) => {
   const { isLoading, restaurants } = useContext(RestaurantContext);
   const { favourites } = useContext(FavouritesContext);
   const [isToggled, setIsToggled] = useState(false);

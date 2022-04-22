@@ -29,13 +29,8 @@ export const LocationContextProvider = ({ children }) => {
         setIsLoading(false);
         setError(err);
       });
+      
     }, [keyword])
-    
-
-  
-  // useEffect(() => {
-  //   onSearch(keyword)
-  // }, []);
 
   return <LocationContext.Provider
     value={{
