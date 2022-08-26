@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "mealtogo",
-    "slug": "mealtogo",
+    "name": "mealstogo",
+    "slug": "mealstogo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
