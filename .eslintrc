@@ -1,0 +1,10 @@
+{
+    "extends": "@react-native-community",
+    "rules": {
+        "quotes" : [2, "single", {"when": "always"}],
+        "react/jsx-curly-spacing": [2, {"when": "always", "allowMultiline": false, "spacing": {
+            "objectLiterals": "never"
+          },
+          "allowEscape" :true}]
+    }
+}
